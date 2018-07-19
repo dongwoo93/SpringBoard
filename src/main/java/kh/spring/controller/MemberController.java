@@ -1,5 +1,77 @@
 package kh.spring.controller;
 
-public class MemberController {
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import kh.spring.dto.MemberDTO;
+import kh.spring.interfaces.MemberService;
+
+@Controller
+public class MemberController {
+	
+	@Autowired
+	private MemberService service;
+	
+	@RequestMapping("/login.do")
+	public String toLogin(HttpServletRequest requerst, String id, String pw) {
+		int result = service.login(id, pw);
+		
+		if(result == 1) {
+			requerst.getSession().setAttribute("loginId", id);
+			return "redirect:index.jsp";
+		}else {
+			return "redirect:loginProcView.jsp";
+		}
+		
+	}
+	
+	@RequestMapping("/logout.do")
+	public String toLogout(HttpServletRequest requerst) {
+		requerst.getSession().invalidate();
+		return "redirect:index.jsp";
+	}
+	
+	@RequestMapping("/withdraw.do")
+	public ModelAndView toWithdraw(HttpServletRequest requerst) {
+		String id = (String) requerst.getSession().getAttribute("loginId");
+		ModelAndView mav = new ModelAndView();
+		int result = service.withdraw(id);
+		if(result == 1) {
+			requerst.getSession().invalidate();
+		}
+		mav.addObject("result", result);
+		mav.setViewName("withdrawProc.jsp");
+		return mav;
+		
+		
+	}
+	
+
+	@RequestMapping("/index.do")
+	public String toIndex() {
+		return "redirect:index.jsp";
+	}
+	
+	@RequestMapping("/join.do")
+	public String toJoinForm() {
+		return "redirect:join.html";
+	}
+	
+	@RequestMapping("/joinProc.do")
+	public ModelAndView toJoinProc(MemberDTO dto) {
+		int result = this.service.insert(dto);
+		System.out.println(dto.getAddress2());
+		System.out.println(dto.getPhone2());
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("result", result);
+		mav.setViewName("joinProcView.jsp");
+		return mav;
+	}
+	
 }
