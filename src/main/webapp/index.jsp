@@ -26,7 +26,7 @@
 
 			<script>
 				document.getElementById("logout").onclick = function() {
-					location.href = "logout.mem";
+					location.href = "logout.do";
 				}
 
 				document.getElementById("mypage").onclick = function() {
@@ -36,7 +36,7 @@
 				document.getElementById("memberout").onclick = function() {
 					var result = confirm("정말로 탈퇴 하시겠습니까?");
 					if (result) {
-						location.href = "withdraw.mem";
+						location.href = "withdraw.do";
 					}
 				}
 				document.getElementById("modify").onclick = function() {
@@ -50,7 +50,7 @@
 
 		</c:when>
 		<c:otherwise>
-			<form action="login.mem" method="post">
+			<form action="login.do" method="post">
 				<table border=1>
 					<tr>
 						<th colspan="2">회원로그인</th>
