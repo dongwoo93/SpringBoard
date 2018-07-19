@@ -1,8 +1,10 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
-<title>회원가입</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>동우교 회원가입</title>
 <style>
         table {}
 
@@ -156,7 +158,7 @@
     <div id="wrapper">
         <table border="1">
             <tr>
-                <th colspan="2">회원 가입 정보</th>
+                <th colspan="2">동우교 회원 가입 정보</th>
             </tr>
             <tr>
                 <td class="menu">아이디 :</td>
@@ -286,5 +288,6 @@
         </table>
     </div>
     </form>
+
 </body>
 </html>
