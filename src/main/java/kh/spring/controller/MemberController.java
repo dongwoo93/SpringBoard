@@ -1,5 +1,8 @@
 package kh.spring.controller;
 
-public class MemberController {
+import org.springframework.stereotype.Controller;
 
+@Controller
+public class MemberController {
+	
 }
