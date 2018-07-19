@@ -1,5 +1,7 @@
 package kh.spring.interfaces;
 
-public interface MemberService {
+import kh.spring.dto.MemberDTO;
 
+public interface MemberService {
+	public int insert(MemberDTO dto); 
 }
