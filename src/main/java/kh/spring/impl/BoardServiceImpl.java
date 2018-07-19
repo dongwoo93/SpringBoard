@@ -1,5 +1,25 @@
 package kh.spring.impl;
 
-public class BoardServiceImpl {
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import kh.spring.dto.BoardDTO;
+import kh.spring.interfaces.BoardDAO;
+import kh.spring.interfaces.BoardService;
+
+@Component
+public class BoardServiceImpl implements BoardService{
+
+	@Autowired
+	private BoardDAO dao;
+
+	@Override
+	public List<BoardDTO> BoardList() {
+		return dao.BoardList();
+	}
+	
+	
+	
 }
