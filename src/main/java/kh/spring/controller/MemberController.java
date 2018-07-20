@@ -74,4 +74,14 @@ public class MemberController {
 		return mav;
 	}
 	
+	@RequestMapping("/mypage.do")
+	public ModelAndView toMyPage(HttpServletRequest request) {
+		String id = (String) request.getSession().getAttribute("loginId");
+		ModelAndView mav = new ModelAndView();
+		MemberDTO list = this.service.getAllData(id);
+		mav.addObject("list", list);
+		mav.setViewName("mypage.jsp");
+		return mav;
+	}
+	
 }

@@ -1,7 +1,5 @@
 package kh.spring.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -28,6 +26,11 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int withdraw(String id) {
 		return dao.withdraw(id);
+	}
+
+	@Override
+	public MemberDTO getAllData(String id) {
+		return dao.getAllData(id);
 	}
 
 	
