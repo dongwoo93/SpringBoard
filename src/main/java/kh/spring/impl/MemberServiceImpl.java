@@ -19,8 +19,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int login(String id, String pw) {
-		return dao.login(id, pw);
+	public int login(MemberDTO dto) {
+		return dao.login(dto);
 	}
 
 	@Override
