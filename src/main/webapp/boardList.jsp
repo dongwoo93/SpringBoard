@@ -46,7 +46,7 @@
 	<c:forEach var="item" items="${result}">
 	<tr>
 		<td>${item.seq} </td>
-		<a href=""><td>${item.title}</td></a>
+		<td><a href="boardView.do?seq=${item.seq}">${item.title}</a></td>
 		<td>${item.writer}</td>
 		<td>${item.writedate}</td>
 		<td>${item.viewcount}</td>
