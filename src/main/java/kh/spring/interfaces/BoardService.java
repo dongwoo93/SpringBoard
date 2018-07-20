@@ -12,5 +12,7 @@ public interface BoardService {
 	
 	public int BoardUpdate(BoardDTO dto);
 	
-	public int BoardDelete(int seq);
+	public int BoardDelete(String seq);
+	
+	public BoardDTO BoardView(String seq);
 }

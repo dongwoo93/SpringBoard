@@ -44,7 +44,7 @@
 					location.href = "modify.jsp";
 				}
 				document.getElementById("toBoard").onclick = function() {
-					location.href = "BoardListController";
+					location.href = "boardList.do";
 				}
 			</script>
 

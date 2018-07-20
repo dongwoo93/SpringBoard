@@ -32,9 +32,15 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int BoardDelete(int seq) {
+	public int BoardDelete(String seq) {
 		
 		return dao.BoardDelete(seq);
+	}
+
+	@Override
+	public BoardDTO BoardView(String seq) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

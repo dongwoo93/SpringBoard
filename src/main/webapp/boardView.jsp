@@ -7,6 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+
 <style>
 
 	table {
@@ -63,8 +66,8 @@
 		
 		<c:otherwise>
 		<input type="button" value="수정하기">
-		<input type="button" value="삭제하기">
-		<input type="button" value="목록으로">
+		<input type="button" value="삭제하기" id="delete" onclick="location.href='boardDelete.do'">
+		<input type="button" value="목록으로" onclick="location.href='boardList.do'">
 		</c:otherwise>
 		
 		</c:choose>
