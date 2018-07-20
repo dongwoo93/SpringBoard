@@ -1,7 +1,11 @@
 package kh.spring.impl;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 import kh.spring.dto.MemberDTO;
@@ -29,6 +33,31 @@ public class MemberDAOImpl implements MemberDAO{
 	public int withdraw(String id) {
 		String sql = "delete from members where id=?";
 		return template.update(sql, id);
+	}
+
+	@Override
+	public MemberDTO getAllData(String id) {
+		String sql = "select * from members where id=?";
+		return template.queryForObject(sql, new Object[] {id}, new RowMapper<MemberDTO>() {
+
+			@Override
+			public MemberDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+				MemberDTO tmp = new MemberDTO();
+				tmp.setId(rs.getString(1));
+				tmp.setPw(rs.getString(2));
+				tmp.setName(rs.getString(3));
+				tmp.setPhone1(rs.getString(4));
+				tmp.setPhone2(rs.getString(5));
+				tmp.setPhone3(rs.getString(6));
+				tmp.setEmail(rs.getString(7));
+				tmp.setZipcode(rs.getString(8));
+				tmp.setAddress1(rs.getString(9));
+				tmp.setAddress2(rs.getString(10));
+				tmp.setIsBlocked(rs.getString(11));
+				tmp.setLast_modified(rs.getString(12));
+				return tmp;
+			}
+		});
 	}
 	
 

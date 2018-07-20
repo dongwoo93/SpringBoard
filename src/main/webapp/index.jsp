@@ -30,7 +30,7 @@
 				}
 
 				document.getElementById("mypage").onclick = function() {
-					location.href = "mypage.jsp";
+					location.href = "mypage.do";
 				}
 
 				document.getElementById("memberout").onclick = function() {

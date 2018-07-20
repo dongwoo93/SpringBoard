@@ -39,8 +39,7 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public BoardDTO BoardView(String seq) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.BoardView(seq);
 	}
 
 
