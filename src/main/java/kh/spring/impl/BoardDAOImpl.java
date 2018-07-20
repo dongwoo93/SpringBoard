@@ -51,10 +51,34 @@ public class BoardDAOImpl implements BoardDAO{
 
 
 	@Override
-	public int BoardDelete(int seq) {
+	public int BoardDelete(String seq) {
 		String sql = "delete from board where seq=?";
 		return template.update(sql, seq);
 	}
 
+	@Override
+	public BoardDTO BoardView(String seq) {
+		String sql = "select * from board where seq=?";
+		return template.queryForObject(sql, new Object[] {seq}, new RowMapper<BoardDTO>() {
+
+			@Override
+			public BoardDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+				BoardDTO tmp = new BoardDTO();
+				tmp.setSeq(rs.getString("seq"));
+				tmp.setTitle(rs.getString("title"));
+				tmp.setContents(rs.getString("contents"));
+				tmp.setWriter(rs.getString("writer"));
+				tmp.setWritedate(rs.getString("writedate"));
+				tmp.setViewcount(rs.getString("viewcount"));
+				tmp.setIp(rs.getString("ip"));
+				return tmp;
+			}
+			
+		});
+	}
+
+	
+
+	
 	
 }

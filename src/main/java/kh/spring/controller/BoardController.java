@@ -45,10 +45,22 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/boardDelete.do")
-	public int boardDeleteProc(int seq) {
+	public int boardDeleteProc(String seq) {
 		return this.service.BoardDelete(seq);
 	}
 	
-	
+	@RequestMapping("/boardView.do")
+	public ModelAndView boardView(String seq) {
+		
+		BoardDTO result = service.BoardView(seq);
+		System.out.println(result.getTitle());
+		System.out.println(result.getContents());
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("result", result);
+		mav.setViewName("boardView.jsp");
+		
+		return mav;
+	}
 	
 }
