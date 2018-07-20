@@ -32,4 +32,23 @@ public class BoardController {
 		
 	}
 	
+	@RequestMapping("/boardWriting.do")
+	public ModelAndView boardWritingProc(BoardDTO dto) {
+		
+		int result = this.service.BoardWriting(dto);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("result", result);
+		mav.setViewName("boardWritingProc.jsp");
+		
+		return mav;
+		
+	}
+	
+	@RequestMapping("/boardDelete.do")
+	public int boardDeleteProc(int seq) {
+		return this.service.BoardDelete(seq);
+	}
+	
+	
+	
 }

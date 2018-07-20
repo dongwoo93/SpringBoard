@@ -8,4 +8,9 @@ public interface BoardService {
 
 	public List<BoardDTO> BoardList();
 	
+	public int BoardWriting(BoardDTO dto);
+	
+	public int BoardUpdate(BoardDTO dto);
+	
+	public int BoardDelete(int seq);
 }

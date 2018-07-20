@@ -19,6 +19,25 @@ public class BoardServiceImpl implements BoardService{
 	public List<BoardDTO> BoardList() {
 		return dao.BoardList();
 	}
+
+	@Override
+	public int BoardWriting(BoardDTO dto) {
+		return dao.BoardWriting(dto);
+	}
+
+	@Override
+	public int BoardUpdate(BoardDTO dto) {
+		
+		return dao.BoardUpdate(dto);
+	}
+
+	@Override
+	public int BoardDelete(int seq) {
+		
+		return dao.BoardDelete(seq);
+	}
+
+
 	
 	
 	

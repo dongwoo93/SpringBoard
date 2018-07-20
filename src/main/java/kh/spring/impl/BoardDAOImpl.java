@@ -36,5 +36,25 @@ public class BoardDAOImpl implements BoardDAO{
 			}
 		});
 	}
+	
+	public int BoardWriting(BoardDTO dto) {
+		String sql = "insert into board values(board_seq.nextval,?,?,'id',sysdate,0,'abc')";
+		return template.update(sql, dto.getTitle(), dto.getContents());
+		
+	}
 
+	@Override
+	public int BoardUpdate(BoardDTO dto) {
+		String sql = "update board set title=?, contents=? where seq=?";
+		return template.update(sql, dto.getTitle(), dto.getContents(), dto.getSeq());
+	}
+
+
+	@Override
+	public int BoardDelete(int seq) {
+		String sql = "delete from board where seq=?";
+		return template.update(sql, seq);
+	}
+
+	
 }
