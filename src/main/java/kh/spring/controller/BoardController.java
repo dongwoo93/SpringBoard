@@ -2,6 +2,8 @@ package kh.spring.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +35,17 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/boardWriting.do")
+	public ModelAndView boardWriting(HttpServletRequest req) {
+		String id = (String)req.getSession().getAttribute("loginId");
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("id", id);
+		mav.setViewName("boardWriting.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("/boardWritingProc.do")
 	public ModelAndView boardWritingProc(BoardDTO dto) {
 		
 		int result = this.service.BoardWriting(dto);
@@ -45,8 +58,15 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/boardDelete.do")
-	public int boardDeleteProc(String seq) {
-		return this.service.BoardDelete(seq);
+	public ModelAndView boardDeleteProc(String seq) {
+		
+		int result = service.BoardDelete(seq);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("result", result);
+		mav.setViewName("boardDeleteProc.jsp");
+		
+		return mav;
+		
 	}
 	
 	@RequestMapping("/boardView.do")
@@ -62,5 +82,27 @@ public class BoardController {
 		
 		return mav;
 	}
+	
+	@RequestMapping("boardUpdate.do")
+	public ModelAndView boardUpdate(String seq) {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("seq", seq);
+		mav.setViewName("boardUpdate.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("/boardUpdateProc.do")
+	public ModelAndView boardUpdateProc(BoardDTO dto) {
+		
+		int result = service.BoardUpdate(dto);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("result", result);
+		mav.setViewName("boardUpdateProc.jsp");
+		
+		return mav;
+		
+	}
+	
 	
 }

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE>
 <html>
@@ -36,11 +36,11 @@
 	<table>
 		
 	<tr>
-		<th style="width: 10%">¹øÈ£</th>
-		<th style="width: 50%">Á¦¸ñ</th>	
-		<th style="width: 20%">ÀÛ¼ºÀÚ</th>
-		<th style="width: 10%">ÀÛ¼ºÀÏ</th>
-		<th style="width: 10%">Á¶È¸¼ö</th>
+		<th style="width: 10%">ë²ˆí˜¸</th>
+		<th style="width: 50%">ì œëª©</th>	
+		<th style="width: 20%">ìž‘ì„±ìž</th>
+		<th style="width: 10%">ìž‘ì„±ì¼</th>
+		<th style="width: 10%">ì¡°íšŒìˆ˜</th>
 	</tr>
 		
 	<c:forEach var="item" items="${result}">
@@ -57,7 +57,7 @@
 	</table>
 
 	<div id="bt">
-	<input type="button" id="writing" value="±Û¾²±â">
+	<input type="button" id="writing" value="ê¸€ì“°ê¸°" onclick="location.href='boardWriting.do?id=${sessionScope.loginId}'">
 	</div>
 </body>
 </html>
