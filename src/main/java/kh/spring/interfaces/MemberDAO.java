@@ -7,4 +7,5 @@ public interface MemberDAO {
 	public int login(String id, String pw);
 	public int withdraw(String id);
 	public MemberDTO getAllData(String id);
+	public int updateInfo(MemberDTO dto);
 }
