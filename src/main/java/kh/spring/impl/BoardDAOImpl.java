@@ -17,11 +17,13 @@ public class BoardDAOImpl implements BoardDAO{
 
 	@Autowired
 	private JdbcTemplate template;
+	
+	private static int currentPage;
 
 	@Override
-	public List<BoardDTO> BoardList() {
-		String sql = "select * from board";
-		return template.query(sql, new RowMapper<BoardDTO>() {
+	public List<BoardDTO> BoardList(int startNum, int endNum) {
+		String sql = "select * from (select board.*, row_number() over(order by writedate desc) as num from board) where num between ? and ?";
+		return template.query(sql, new Object[] {startNum, endNum}, new RowMapper<BoardDTO>() {
 			@Override
 			public BoardDTO mapRow(ResultSet rs, int rownum) throws SQLException {
 				BoardDTO tmp = new BoardDTO();
@@ -75,6 +77,85 @@ public class BoardDAOImpl implements BoardDAO{
 			}
 			
 		});
+	}
+
+	@Override
+	public String getPageNavi(int currentPage) {
+		BoardDAOImpl.currentPage = currentPage;
+		String sql = "select count(*) totalCount from board";
+		return template.queryForObject(sql, new RowMapper<String>() {
+
+			@Override
+			public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+				int recordTotalCount = rs.getInt("totalCount"); //전체 글(레코드) 의 개수를 저정하는 변수
+				int recordCountPerPage = 10; //한 페이지에 게시글이 몇개 보일 건지
+				int naviCountPerPage = 10; // 한 페이지에서 네이게이터가 몇개씩 보일건지
+				int pageTotalCount = 0; //전체가 몇페이지로 구성 될 것인지
+				
+				if(recordTotalCount % recordCountPerPage > 0) {  //정확히 10으로 나누어 떨어지지 않음
+					pageTotalCount = recordTotalCount / recordCountPerPage + 1;
+				}else {
+					pageTotalCount = recordTotalCount / recordCountPerPage;
+				}
+				
+				//------------------------------------------------------------------
+				
+				if(BoardDAOImpl.currentPage < 1) {
+					BoardDAOImpl.currentPage = 1;
+				}else if(BoardDAOImpl.currentPage>pageTotalCount){
+					BoardDAOImpl.currentPage = pageTotalCount;
+				}
+				//현재 페이지가 비정상인지 검증하는 코드
+				
+				//------------------------------------------------------------------
+				
+				
+				
+				//네이게이터가 시작하는 값 ?
+		        // currentPage / naviCountPerPage * naviCountPerPage+1;
+				
+				int startNavi =  (BoardDAOImpl.currentPage - 1) / naviCountPerPage*naviCountPerPage+1;//네이게이터 시작 값
+				int endNavi = startNavi + (naviCountPerPage-1); // 네비게이터 끝 값
+				
+				if(endNavi > pageTotalCount) {
+					endNavi = pageTotalCount;
+				}
+
+				
+				boolean needPrev = true;
+				boolean needNext = true;
+				
+				if(startNavi==1) {
+					needPrev=false;
+				}
+				
+				if(endNavi == pageTotalCount) {
+					needNext = false;
+				}
+				
+				StringBuilder sb = new StringBuilder();
+				
+				if(needPrev) {
+					sb.append("<a href='boardList.do?currentPage="+(startNavi-1)+"'>< </a> ");
+				}
+				
+				for(int i=startNavi; i<=endNavi; i++) {
+					if(BoardDAOImpl.currentPage==i){
+						sb.append("<a href='boardList.do?currentPage="+i+"' ><b>"+ i + " </b></a>");
+					}else {
+						sb.append("<a href='boardList.do?currentPage="+i+"' >"+ i + " </a>");
+					}
+					
+//					sb.append("<a href=''> "+ i +" </a>");
+				}
+				if(needNext) {
+					sb.append("<a href='boardList.do?currentPage="+(endNavi+1)+"'>></a>");
+				}
+				return sb.toString();
+			}
+			
+		});
+		
 	}
 
 	

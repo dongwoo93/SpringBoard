@@ -52,9 +52,11 @@
 		<td>${item.viewcount}</td>
 	</tr>	
 	</c:forEach>
-	
-	
+		<tr>
+			<td colspan="5" align="center">${navi}</td>
+		</tr>
 	</table>
+	
 
 	<div id="bt">
 	<input type="button" id="writing" value="글쓰기">

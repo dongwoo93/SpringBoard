@@ -2,6 +2,8 @@ package kh.spring.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,15 +19,26 @@ public class BoardController {
 	private BoardService service;
 	
 	@RequestMapping("/boardList.do")
-	public ModelAndView boardListProc() {
+	public ModelAndView boardListProc(HttpServletRequest request) {
+		
+		int currentPage = 0;
+		String currentPageString = request.getParameter("currentPage");
+		
+		if(currentPageString ==null){
+			currentPage = 1;
+		}else{
+			currentPage = Integer.parseInt(currentPageString);
+		}
 		
 		ModelAndView mav = new ModelAndView();
 		
-		List<BoardDTO> result = this.service.BoardList();
+		List<BoardDTO> result = this.service.BoardList(currentPage*10-9, currentPage*10);
+		String navi = service.getPageNavi(currentPage);
 		
 		System.out.println(result.get(0).getTitle());
 		
 		mav.addObject("result", result);
+		mav.addObject("navi", navi);
 		mav.setViewName("boardList.jsp");
 		
 		return mav;

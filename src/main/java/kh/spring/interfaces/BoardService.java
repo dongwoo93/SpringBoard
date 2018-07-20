@@ -6,7 +6,7 @@ import kh.spring.dto.BoardDTO;
 
 public interface BoardService {
 
-	public List<BoardDTO> BoardList();
+	public List<BoardDTO> BoardList(int startNum, int endNum);
 	
 	public int BoardWriting(BoardDTO dto);
 	
@@ -15,4 +15,6 @@ public interface BoardService {
 	public int BoardDelete(String seq);
 	
 	public BoardDTO BoardView(String seq);
+	
+	public String getPageNavi(int currentPage);
 }
