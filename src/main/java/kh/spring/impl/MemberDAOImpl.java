@@ -59,6 +59,11 @@ public class MemberDAOImpl implements MemberDAO{
 			}
 		});
 	}
-	
+
+	@Override
+	public int updateInfo(MemberDTO dto) {
+		String sql = "update members set pw=?, name=?, phone1=?, phone2=?, phone3=?, email=?, zipcode=?, address1=?, address2=? where id=?";
+		return template.update(sql, dto.getPw(), dto.getName(), dto.getPhone1(), dto.getPhone2(), dto.getPhone3(), dto.getEmail(), dto.getZipcode(), dto.getAddress1(), dto.getAddress2(), dto.getId());
+	}
 
 }

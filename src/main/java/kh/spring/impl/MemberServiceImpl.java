@@ -33,6 +33,13 @@ public class MemberServiceImpl implements MemberService{
 		return dao.getAllData(id);
 	}
 
+	@Override
+	public int updateInfo(MemberDTO dto) {
+		return dao.updateInfo(dto);
+	}
+
+	
+
 	
 
 }

@@ -1,29 +1,35 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
+<title>회원 정보 수정</title>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <style>
-        table {}
+table {
+	
+}
 
-        .menu {
-            text-align: right;
-        }
+.menu {
+	text-align: right;
+}
 
-        .tel {
-            width: 80px;
-        }
+.tel {
+	width: 80px;
+}
 
-        .content {
-            width: 350px;
-        }
+.content {
+	width: 350px;
+}
 
-        #result {
-            display: inline;
-        }
-    </style>
+#result {
+	display: inline;
+}
+</style>
 
-    <script>
+<script>
         var nameregex = /[^ㄱ-ㅎㅏ-ㅣ가-힣]/; // 한글
         var telregex = /[^0-9]/; // 전화번호
         var telregex2 = /^.{4}$/;
@@ -144,107 +150,114 @@
         		
         	}
             
-            document.getElementById("join").onclick = function() {
-            	var result = check();
-    			if(result) {
-    				makeFunction("joinProc.do");
-    			}
-            }
+        	 document.getElementById("modify").onclick = function() {
+             	var result = check();
+     			if(result) {
+     				makeFunction("infoModify.do");
+     			}
+             }
+             
+     		$("#back").click(function() {
+     			$(location).attr("href", "index.do");
+     		})
             
         }
     </script>
+
 </head>
-
 <body>
-<form id="postform" method="post">
-    <div id="wrapper">
-        <table border="1">
-            <tr>
-                <th colspan="2">회원 가입 정보</th>
-            </tr>
-            <tr>
-                <td class="menu">아이디 :</td>
-                <td class="content">
-                    <input type="text" id="id1" name="id">
-                </td>
-            </tr>
+	<form id="postform" method="post">
+		<div id="wrapper">
+			<table border='1'>
+				<tr>
+					<th colspan="2">회원 정보 수정</th>
+				</tr>
+				<tr>
+					<td class="menu">아이디 :</td>
+					<td class="content"><input type="text" value="${list.id}"
+						id="id1" name="id" readonly></td>
+				</tr>
 
-            <tr>
-                <td class="menu">비밀번호 :</td>
-                <td class="content"><input id="pass1" type="text" name="pw"></td>
-            </tr>
+				<tr>
+					<td class="menu">비밀번호 :</td>
+					<td class="content"><input id="pass1" type="text" name="pw"></td>
+				</tr>
 
-            <tr>
-                <td class="menu">비밀번호 확인 :</td>
-                <td class="content"><input id="pass2" type="text">
-                    <div id="result" style="font-size: 12px"></div>
-                </td>
-            </tr>
+				<tr>
+					<td class="menu">비밀번호 확인 :</td>
+					<td class="content"><input id="pass2" type="text">
+						<div id="result" style="font-size: 12px"></div></td>
+				</tr>
 
-            <tr>
-                <td class="menu">이름 :</td>
-                <td class="content">
-                    <input type="text" id="namein" name="name">
-                </td>
-            </tr>
+				<tr>
+					<td class="menu">이름 :</td>
+					<td class="content"><input type="text" id="namein" name="name"
+						value="${list.name}"></td>
+				</tr>
 
-            <tr>
-                <td class="menu">전화번호 :</td>
-                <td class="content">
-                    <select name="phone1" class="txt_12px_01">
-                          <option value="02">02</option>
-                          <option value="031">031</option>
-                          <option value="032">032</option>
-                          <option value="033">033</option>
-                          <option value="041">041</option>
-                          <option value="042">042</option>
-                          <option value="043">043</option>
-                          <option value="051">051</option>
-                          <option value="052">052</option>
-                          <option value="053">053</option>
-                          <option value="054">054</option>
-                          <option value="055">055</option>
-                          <option value="061">061</option>
-                          <option value="062">062</option>
-                          <option value="063">063</option>
-                          <option value="064">064</option>
-                     </select> - <input type="text" class="tel" id="tel1" name="phone2"> - <input type="text" class="tel" id="tel2" name="phone3">
-                </td>
-            </tr>
+				<tr>
+					<td class="menu">전화번호 :</td>
+					<td class="content"><select name="phone1" class="txt_12px_01">
+							<option value="${list.phone1}">${list.phone1}</option>
+							<option value="02">02</option>
+							<option value="031">031</option>
+							<option value="032">032</option>
+							<option value="033">033</option>
+							<option value="041">041</option>
+							<option value="042">042</option>
+							<option value="043">043</option>
+							<option value="051">051</option>
+							<option value="052">052</option>
+							<option value="053">053</option>
+							<option value="054">054</option>
+							<option value="055">055</option>
+							<option value="061">061</option>
+							<option value="062">062</option>
+							<option value="063">063</option>
+							<option value="064">064</option>
+					</select> - <input type="text" class="tel" id="tel1" name="phone2"
+						value="${list.phone2}"> - <input type="text" class="tel"
+						id="tel2" name="phone3" value="${list.phone3}"></td>
+				</tr>
 
-            <tr>
-                <td class="menu">이메일 :</td>
-                <td class="content">
-                    <input type="text" id="email1" name="email">
-                </td>
-            </tr>
+				<tr>
+					<td class="menu">이메일 :</td>
+					<td class="content"><input type="text" id="email1"
+						name="email" value="${list.email}"></td>
+				</tr>
 
-            <tr>
-                <td class="menu">우편번호 :</td>
-                <td class="content"><input type="text" id="sample6_postcode" name="zipcode" placeholder="우편번호" readonly>
-                    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
-            </tr>
+				<tr>
+					<td class="menu">우편번호 :</td>
+					<td class="content"><input type="text" id="sample6_postcode"
+						name="zipcode" value="${list.zipcode}" readonly> <input
+						type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
+				</tr>
 
-            <tr>
-                <td class="menu">주소1 :</td>
-                <td class="content"><input type="text" id="sample6_address" name="address1" placeholder="주소" readonly></td>
-            </tr>
+				<tr>
+					<td class="menu">주소1 :</td>
+					<td class="content"><input type="text" id="sample6_address"
+						name="address1" value="${list.address1}" readonly></td>
+				</tr>
 
-            <tr>
-                <td class="menu">주소2 :</td>
-                <td class="content"><input type="text" id="sample6_address2" name="address2" placeholder="상세주소"></td>
-            </tr>
+				<tr>
+					<td class="menu">주소2 :</td>
+					<td class="content"><input type="text" id="sample6_address2"
+						name="address2" value="${list.address2}"></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<button id="modify" type="submit">정보수정</button>
+						<button type="button" id="back">뒤로가기</button>
+					</td>
+				</tr>
 
-            <tr>
-                <td colspan="2" align="center">
-                    <button id="join" type="submit">회원가입</button>
-                    <button id="reinput" type="button">다시입력</button>
-                </td>
-            </tr>
+			</table>
+		</div>
+	</form>
 
-            <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-            <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-            <script>
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<script>
                 function sample6_execDaumPostcode() {
                     new daum.Postcode({
                         oncomplete: function(data) {
@@ -287,8 +300,5 @@
                     }).open();
                 }
             </script>
-        </table>
-    </div>
-    </form>
 </body>
 </html>
