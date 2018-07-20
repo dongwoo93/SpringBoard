@@ -39,7 +39,6 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public BoardDTO BoardView(String seq) {
-		
 		return dao.BoardView(seq);
 	}
 
