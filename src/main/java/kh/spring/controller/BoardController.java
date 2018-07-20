@@ -2,6 +2,8 @@ package kh.spring.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +35,17 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/boardWriting.do")
+	public ModelAndView boardWriting(HttpServletRequest req) {
+		String id = (String)req.getSession().getAttribute("loginId");
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("id", id);
+		mav.setViewName("boardWriting.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("/boardWritingProc.do")
 	public ModelAndView boardWritingProc(BoardDTO dto) {
 		
 		int result = this.service.BoardWriting(dto);
