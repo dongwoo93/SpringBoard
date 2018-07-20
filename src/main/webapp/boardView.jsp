@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE>
 <html>
@@ -39,13 +39,13 @@
 	
 		<tr height="10%">
 		
-		<td>ÀÛ¼ºÀÚ ${result.writer}</td>
-		<td>ÀÛ¼ºÀÏ ${result.writedate}</td>
+		<td>ì‘ì„±ì ${result.writer}</td>
+		<td>ì‘ì„±ì¼ ${result.writedate}</td>
 		
 		</tr>
 	
 		<tr height="10%">
-		<td colspan="2">Á¦¸ñ ${result.title}</td>
+		<td colspan="2">ì œëª© ${result.title}</td>
 		</tr>
 	
 		<tr height="80%">
@@ -58,16 +58,16 @@
 		<c:choose>
 		
 		<c:when test="${sessionScope.loginId}">
-			<input type="button" value="¼öÁ¤ÇÏ±â">
-			<input type="button" value="»èÁ¦ÇÏ±â">
-			<input type="button" value="¸ñ·ÏÀ¸·Î">
+			<input type="button" value="ìˆ˜ì •í•˜ê¸°">
+			<input type="button" value="ì‚­ì œí•˜ê¸°">
+			<input type="button" value="ëª©ë¡ìœ¼ë¡œ">
 		</c:when>
 		
 		
 		<c:otherwise>
-		<input type="button" value="¼öÁ¤ÇÏ±â">
-		<input type="button" value="»èÁ¦ÇÏ±â" id="delete" onclick="location.href='boardDelete.do'">
-		<input type="button" value="¸ñ·ÏÀ¸·Î" onclick="location.href='boardList.do'">
+		<input type="button" value="ìˆ˜ì •í•˜ê¸°" onclick="location.href='boardUpdate.do?seq=${result.seq}'">
+		<input type="button" value="ì‚­ì œí•˜ê¸°" id="delete" onclick="location.href='boardDelete.do?seq=${result.seq}'">
+		<input type="button" value="ëª©ë¡ìœ¼ë¡œ" onclick="location.href='boardList.do'">
 		</c:otherwise>
 		
 		</c:choose>
