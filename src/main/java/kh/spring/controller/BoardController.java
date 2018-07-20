@@ -45,8 +45,15 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/boardDelete.do")
-	public int boardDeleteProc(String seq) {
-		return this.service.BoardDelete(seq);
+	public ModelAndView boardDeleteProc(String seq) {
+		
+		int result = service.BoardDelete(seq);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("result", result);
+		mav.setViewName("boardDeleteProc.jsp");
+		
+		return mav;
+		
 	}
 	
 	@RequestMapping("/boardView.do")
@@ -62,5 +69,27 @@ public class BoardController {
 		
 		return mav;
 	}
+	
+	@RequestMapping("boardUpdate.do")
+	public ModelAndView boardUpdate(String seq) {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("seq", seq);
+		mav.setViewName("boardUpdate.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("/boardUpdateProc.do")
+	public ModelAndView boardUpdateProc(BoardDTO dto) {
+		
+		int result = service.BoardUpdate(dto);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("result", result);
+		mav.setViewName("boardUpdateProc.jsp");
+		
+		return mav;
+		
+	}
+	
 	
 }

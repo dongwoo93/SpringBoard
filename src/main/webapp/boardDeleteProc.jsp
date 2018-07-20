@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,11 +8,11 @@
 </head>
 <body>
 
-	<script>
+		<script>
 		if(${result} > 0){
-			alert("昏力 己傍");
+			alert("靷牅 靹标车");
 		}else{
-			alert("昏力 角菩");
+			alert("靷牅 鞁ろ尐");
 		}
 		location.href = "boardList.do";
 	</script>
