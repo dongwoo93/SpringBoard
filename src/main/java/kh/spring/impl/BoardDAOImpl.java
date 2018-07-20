@@ -40,8 +40,8 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 	
 	public int BoardWriting(BoardDTO dto) {
-		String sql = "insert into board values(board_seq.nextval,?,?,'id',sysdate,0,'abc')";
-		return template.update(sql, dto.getTitle(), dto.getContents());
+		String sql = "insert into board values(board_seq.nextval,?,?,?,sysdate,0,'abc')";
+		return template.update(sql, dto.getTitle(), dto.getContents(), dto.getWriter());
 		
 	}
 

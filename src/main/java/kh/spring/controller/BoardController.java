@@ -46,6 +46,17 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/boardWriting.do")
+	public ModelAndView boardWriting(HttpServletRequest req) {
+		String id = (String)req.getSession().getAttribute("loginId");
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("id", id);
+		mav.setViewName("boardWriting.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("/boardWritingProc.do")
 	public ModelAndView boardWritingProc(BoardDTO dto) {
 		
 		int result = this.service.BoardWriting(dto);

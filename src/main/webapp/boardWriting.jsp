@@ -30,7 +30,8 @@
 
 </head>
 <body>
-	<form action="boardWriting.do" method="post">
+	<form action="boardWritingProc.do" method="post">
+	<input type="hidden" name="writer" value="${id}">
 	<table>
 	
 	<tr>

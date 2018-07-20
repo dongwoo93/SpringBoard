@@ -59,7 +59,7 @@
 	
 
 	<div id="bt">
-	<input type="button" id="writing" value="글쓰기">
+	<input type="button" id="writing" value="글쓰기" onclick="location.href='boardWriting.do?id=${sessionScope.loginId}'">
 	</div>
 </body>
 </html>
