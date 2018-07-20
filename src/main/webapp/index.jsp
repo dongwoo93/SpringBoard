@@ -41,7 +41,7 @@
 				}
 				document.getElementById("modify").onclick = function() {
 
-					location.href = "modify.jsp";
+					location.href = "modify.do";
 				}
 				document.getElementById("toBoard").onclick = function() {
 					location.href = "boardList.do";

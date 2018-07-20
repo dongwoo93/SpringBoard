@@ -84,4 +84,24 @@ public class MemberController {
 		return mav;
 	}
 	
+	@RequestMapping("/modify.do")
+	public ModelAndView toModifyView(HttpServletRequest request) {
+		String id = (String) request.getSession().getAttribute("loginId");
+		ModelAndView mav = new ModelAndView();
+		MemberDTO list = this.service.getAllData(id);
+		mav.addObject("list", list);
+		mav.setViewName("infoModify.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("/infoModify.do")
+	public ModelAndView toModifyProc(HttpServletRequest request, MemberDTO dto) {
+		ModelAndView mav = new ModelAndView();
+		int result = this.service.updateInfo(dto);
+		mav.addObject("result", result);
+		mav.setViewName("modifyProcView.jsp");
+		return mav;
+	}
+	
+	
 }
