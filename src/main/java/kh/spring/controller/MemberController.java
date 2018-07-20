@@ -19,11 +19,11 @@ public class MemberController {
 	private MemberService service;
 	
 	@RequestMapping("/login.do")
-	public String toLogin(HttpServletRequest requerst, String id, String pw) {
-		int result = service.login(id, pw);
+	public String toLogin(HttpServletRequest requerst, MemberDTO dto) {
+		int result = service.login(dto);
 		
 		if(result == 1) {
-			requerst.getSession().setAttribute("loginId", id);
+			requerst.getSession().setAttribute("loginId", dto.getId());
 			return "redirect:index.jsp";
 		}else {
 			return "redirect:loginProcView.jsp";

@@ -24,9 +24,9 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 
 	@Override
-	public int login(String id, String pw) {
+	public int login(MemberDTO dto) {
 		String sql = "select * from members where id=? and pw=?";
-		return template.update(sql, id, pw);
+		return template.update(sql, dto.getId(), dto.getPw());
 	}
 
 	@Override
