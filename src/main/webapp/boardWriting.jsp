@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -34,21 +34,21 @@
 	<table>
 	
 	<tr>
-		<th height="10%">Á¦¸ñ</th>
-		<td><input type="text" placeholder="Á¦¸ñÀ» ÀÔ·ÂÇÏ¼¼¿ä" style="width: 99%" name="title"></td>
+		<th height="10%">ì œëª©</th>
+		<td><input type="text" placeholder="ì œëª©ì„ ìž…ë ¥í•˜ì„¸ìš”" style="width: 99%" name="title"></td>
 	</tr>
 	
 	<tr>
-		<th height="90%" width="80px">³»¿ë</th>	
-		<td><textarea placeholder="³»¿ëÀ» ÀÔ·ÂÇÏ¼¼¿ä" 
+		<th height="90%" width="80px">ë‚´ìš©</th>	
+		<td><textarea placeholder="ë‚´ìš©ì„ ìž…ë ¥í•˜ì„¸ìš”" 
 		cols="58" rows="30" style="resize: none;" name="contents"></textarea></td>
 	</tr>
 	
 	</table> 
 
 	<div>
-		<input type="button" value="¸ñ·ÏÀ¸·Î">
-		<button>±Û¾²±â</button>
+		<input type="button" value="ëª©ë¡ìœ¼ë¡œ">
+		<button>ê¸€ì“°ê¸°</button>
 	</div>
 	</form>
 </body>
