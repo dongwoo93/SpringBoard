@@ -10,12 +10,10 @@ public class BoardDTO {
    private String ip;
    
    public BoardDTO() {
-      super();
    }
 
    public BoardDTO(String seq, String title, String contents, String writer, String writedate, String viewcount,
          String ip) {
-      super();
       this.seq = seq;
       this.title = title;
       this.contents = contents;

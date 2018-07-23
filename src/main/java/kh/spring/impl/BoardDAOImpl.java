@@ -1,12 +1,11 @@
 package kh.spring.impl;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 import kh.spring.dto.BoardDTO;
@@ -15,12 +14,46 @@ import kh.spring.interfaces.BoardDAO;
 @Component
 public class BoardDAOImpl implements BoardDAO{
 
-	@Autowired
-	private JdbcTemplate template;
+	/*@Autowired
+	private JdbcTemplate template;*/
 	
-	private static int currentPage;
+	@Autowired
+	private SqlSessionTemplate template;
+	
+	@Override
+	public List<BoardDTO> BoardList(int startNum, int endNum) {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+		return template.selectList("Board.BoardList", map);
+	}
 
 	@Override
+	public int BoardWriting(BoardDTO dto) {
+		return template.insert("Board.insert", dto);
+	}
+
+	@Override
+	public int BoardUpdate(BoardDTO dto) {
+		return 0;
+	}
+
+	@Override
+	public int BoardDelete(String seq) {
+		return 0;
+	}
+
+	@Override
+	public BoardDTO BoardView(String seq) {
+		return null;
+	}
+
+	@Override
+	public String getPageNavi(int currentPage) {
+		return sb.toString();
+	}
+	
+	/*@Override
 	public List<BoardDTO> BoardList(int startNum, int endNum) {
 		String sql = "select * from (select board.*, row_number() over(order by writedate desc) as num from board) where num between ? and ?";
 		return template.query(sql, new Object[] {startNum, endNum}, new RowMapper<BoardDTO>() {
@@ -156,7 +189,7 @@ public class BoardDAOImpl implements BoardDAO{
 			
 		});
 		
-	}
+	}*/
 
 	
 

@@ -32,8 +32,10 @@ public class BoardController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		List<BoardDTO> result = this.service.BoardList(currentPage*10-9, currentPage*10);
 		String navi = service.getPageNavi(currentPage);
+		
+		List<BoardDTO> result = this.service.BoardList(currentPage*10-9, currentPage*10);
+		
 		
 		System.out.println(result.get(0).getTitle());
 		

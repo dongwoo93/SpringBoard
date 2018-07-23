@@ -1,11 +1,10 @@
 package kh.spring.impl;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 import kh.spring.dto.MemberDTO;
@@ -14,19 +13,50 @@ import kh.spring.interfaces.MemberDAO;
 @Component
 public class MemberDAOImpl implements MemberDAO{
 	
+	/*@Autowired
+	private JdbcTemplate template;*/
+	
 	@Autowired
-	private JdbcTemplate template;
+	private SqlSessionTemplate template;
 	
 	@Override
+	public int insert(MemberDTO dto) {
+		return template.insert("Member.insert", dto);
+	}
+
+	@Override
+	public MemberDTO getAllData(String id){
+		return template.selectOne("Member.getAllData", id);
+	}
+
+	@Override
+	public int login(String id, String pw) {
+		Map<String, String> map = new HashMap<>();
+		map.put("id", id);
+		map.put("pw", pw);
+		return template.selectOne("Member.login", map);
+	}
+	
+	@Override
+	public int withdraw(String id) {
+		return template.delete("Member.withdraw", id);
+	}
+
+	@Override
+	public int updateInfo(MemberDTO dto) {
+		return template.update("Member.updateInfo", dto);
+	}
+	
+	/*@Override
 	public int insert(MemberDTO dto) {
 		String sql = "insert into members values(?,?,?,?,?,?,?,?,?,?,default,sysdate)";
 		return template.update(sql, dto.getId(), dto.getPw(), dto.getName(), dto.getPhone1(), dto.getPhone2(), dto.getPhone3(), dto.getEmail(), dto.getZipcode(), dto.getAddress1(), dto.getAddress2());
 	}
 
 	@Override
-	public int login(MemberDTO dto) {
+	public int login(String id, String pw) {
 		String sql = "select * from members where id=? and pw=?";
-		return template.update(sql, dto.getId(), dto.getPw());
+		return template.update(sql, id, pw);
 	}
 
 	@Override
@@ -64,6 +94,6 @@ public class MemberDAOImpl implements MemberDAO{
 	public int updateInfo(MemberDTO dto) {
 		String sql = "update members set pw=?, name=?, phone1=?, phone2=?, phone3=?, email=?, zipcode=?, address1=?, address2=? where id=?";
 		return template.update(sql, dto.getPw(), dto.getName(), dto.getPhone1(), dto.getPhone2(), dto.getPhone3(), dto.getEmail(), dto.getZipcode(), dto.getAddress1(), dto.getAddress2(), dto.getId());
-	}
+	}*/
 
 }
